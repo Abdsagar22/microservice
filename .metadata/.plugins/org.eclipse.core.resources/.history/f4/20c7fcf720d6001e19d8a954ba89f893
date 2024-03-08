@@ -1,0 +1,44 @@
+package com.user_service.serimpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.user_service.Repo.UserRepo;
+import com.user_service.entity.User;
+import com.user_service.service.Userser;
+import com.user_service.util.ResponseStructure;
+
+@Service
+public class UserSerivceimpl implements Userser {
+	
+	@Autowired
+	private UserRepo repo;
+
+	@Override
+	public ResponseEntity<ResponseStructure<User>> createData(User user) {
+		ResponseStructure<User> res= new ResponseStructure<>();
+		res.setData(repo.save(user));
+		res.setMessage("Save Data ");
+		res.setStatas(HttpStatus.CREATED.value());
+		return new ResponseEntity<ResponseStructure<User>>(res , HttpStatus.CREATED);
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<User>> getById(String id) {
+		ResponseStructure<User> res= new ResponseStructure<>();
+		User user= repo.getById(id).get();
+		if (user!=null) {
+			
+			res.setData(user);
+			res.setMessage("the data is getting");
+			res.setStatas(HttpStatus.OK.value());
+			
+			return new ResponseEntity<ResponseStructure<User>>(res,HttpStatus.OK);
+		}
+		return null;
+	}
+	
+
+}

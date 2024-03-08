@@ -1,0 +1,13 @@
+package com.serresistry;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ServiceresistryApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ServiceresistryApplication.class, args);
+	}
+
+}

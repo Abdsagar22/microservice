@@ -1,0 +1,54 @@
+package com.hotel_service.cotroller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hotel_service.entity.Hotel;
+import com.hotel_service.ser.HotelSerivceimpl;
+import com.hotel_service.util.ResponseStructure;
+
+
+@RestController
+@RequestMapping("/hotel")
+public class Hotelcontroller {
+
+	@Autowired
+	private HotelSerivceimpl ser;
+	
+	@PostMapping("/save")
+	private ResponseEntity<ResponseStructure<Hotel>> createData(@RequestBody Hotel hotel)
+	{
+		return ser.createData(hotel);
+		
+	}
+	
+	@GetMapping("/{id}")
+	private ResponseEntity<ResponseStructure<Hotel>> createData(@PathVariable int id)
+	{
+		return ser.getById(id);
+		
+	}
+	
+	@GetMapping("/getAll")
+	private List<Hotel> getAlldata()
+	{
+		return ser.getAlldata();
+		
+	}
+	
+	@DeleteMapping("/{id}")
+	private ResponseEntity<ResponseStructure<Hotel>> deleteData(@PathVariable int id)
+	{
+		return ser.deleteById(id);
+		
+	}
+}

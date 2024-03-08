@@ -1,0 +1,65 @@
+package com.Ratings.serimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.Ratings.repo.RatingssRepo;
+import com.Ratings.util.ResponseStructure;
+import com.rating.entity.Ratings;
+
+
+
+public class RatingsSerivceimpl {
+
+	@Autowired
+	private RatingssRepo repo;
+
+	@Override
+	public ResponseEntity<ResponseStructure<Ratings>> createData(Ratings Ratings) {
+		ResponseStructure<Ratings> res= new ResponseStructure<>();
+		res.setData(repo.save(Ratings));
+		res.setMessage("Save Data ");
+		res.setStatas(HttpStatus.CREATED.value());
+		return new ResponseEntity<ResponseStructure<Ratings>>(res , HttpStatus.CREATED);
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<Ratings>> getById(int id) {
+		ResponseStructure<Ratings> res= new ResponseStructure<>();
+		Ratings Ratings= repo.findById(id).get();
+		if (Ratings!=null) {
+			
+			res.setData(Ratings);
+			res.setMessage("the data is getting");
+			res.setStatas(HttpStatus.OK.value());
+			
+			return new ResponseEntity<ResponseStructure<Ratings>>(res,HttpStatus.OK);
+		}
+		
+	}
+
+	@Override
+	public List<Ratings> getAlldata() {
+		List<Ratings> Ratings= repo.findAll();
+		return Ratings;
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<Ratings>> deleteById(int id) {
+		ResponseStructure<Ratings> res= new ResponseStructure<>();
+		Ratings Ratings= repo.findById(id).get();
+		if (Ratings!=null) {
+			
+			repo.deleteById(id);
+			res.setData(Ratings);
+			res.setMessage("the data is Delete");
+			res.setStatas(HttpStatus.OK.value());
+			
+			return new ResponseEntity<ResponseStructure<Ratings>>(res,HttpStatus.OK);
+		}
+		
+	}
+}

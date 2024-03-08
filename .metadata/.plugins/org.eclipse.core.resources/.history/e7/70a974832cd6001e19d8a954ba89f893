@@ -1,0 +1,31 @@
+package com.user_service.excepation;
+
+import java.util.NoSuchElementException;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.user_service.util.ResponseStructure;
+
+public class GlobalException {
+
+	@ExceptionHandler(IdNotFoundException.class)
+	public ResponseEntity<ResponseStructure<String>> idNotFound(IdNotFoundException ex) {
+		ResponseStructure<String> responseStruture = new ResponseStructure<String>();
+		responseStruture.setMessage(ex.getMessage());
+		responseStruture.setStatas(HttpStatus.NOT_FOUND.value());
+		responseStruture.setData("no id found");
+
+		return new ResponseEntity<ResponseStructure<String>>(responseStruture, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(NoSuchElementException.class)
+	public ResponseEntity<ResponseStruture<String>> noSuchElement(NoSuchElementException ex) {
+		ResponseStruture<String> responseStruture = new ResponseStResponseStructureruture<String>();
+		responseStruture.setMessage(ex.getMessage());
+		responseStruture.setStatus(HttpStatus.NOT_FOUND.value());
+		responseStruture.setData("no element found for the given id");
+		return new ResponseEntity<ResponseStructure<String>>(responseStruture, HttpStatus.NOT_FOUND);
+	}
+}

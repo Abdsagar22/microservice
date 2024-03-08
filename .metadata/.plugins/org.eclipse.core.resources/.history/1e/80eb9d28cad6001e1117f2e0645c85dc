@@ -1,0 +1,5 @@
+package com.rating.ser;
+
+public interface Ratingser {
+
+}

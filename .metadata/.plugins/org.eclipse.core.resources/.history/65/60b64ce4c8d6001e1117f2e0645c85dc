@@ -1,0 +1,13 @@
+package com.rating.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Ratings {
+
+	private int ratingId;
+	private int userId;
+	private int hotelId;
+	private int ratings;
+	private String feedBack;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.rating.serimpl.RatingSerivceimpl"/>
+    <fullyQualifiedTypeName name="com.rating.entity.Ratings"/>
+    <fullyQualifiedTypeName name="com.rating.util.ResponseStructure"/>
+    <fullyQualifiedTypeName name="com.rating.repo.RatingsRepo"/>
+    <fullyQualifiedTypeName name="com.rating.ser.Ratingser"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.rating.serimpl.RatingsSerivceimpl"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.server.EnableEurekaServer"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.client.discovery.EnableDiscoveryClient"/>
+</qualifiedTypeNameHistroy>

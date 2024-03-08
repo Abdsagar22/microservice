@@ -1,0 +1,5 @@
+package com.user_service.excepation;
+
+public class GlobalException {
+
+}
