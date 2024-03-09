@@ -3,6 +3,8 @@ package com.user_service.serimpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,8 @@ public class UserSerivceimpl implements Userser {
 	
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	private Logger log = LoggerFactory.getLogger(UserSerivceimpl.class);
 
 	@Override
 	public ResponseEntity<ResponseStructure<User>> createData(User user) {
@@ -39,20 +43,19 @@ public class UserSerivceimpl implements Userser {
 		System.out.println("hiiiiii");
 		ResponseStructure<User> res= new ResponseStructure<>();
 		User user= repo.findById(id).get();
-		System.out.println("hiiiiii");
-		Object ob=restTemplate.getForObject("http://localhost:8083/Ratings/1", ArrayList.class); 
-		
-		System.out.println(ob.getClass());
+		System.out.println("hiiiiii");		
 		if (user!=null) {
 			
 			res.setData(user);
 			res.setMessage("the data is getting");
 			res.setStatas(HttpStatus.OK.value());
+		ArrayList<Rating> ob =restTemplate.getForObject("http://localhost:8083/Ratings/getAll", ArrayList.class);
 			
-			
-			
-			
-			
+		user.setRating(ob);
+		
+		System.out.println(ob);
+		log.info("{}",ob);
+				
 			
 			return new ResponseEntity<ResponseStructure<User>>(res,HttpStatus.OK);
 		}
@@ -84,10 +87,6 @@ public class UserSerivceimpl implements Userser {
 			throw new IdNotFoundException("Id Not found for Person");
 		}
 	}
-
-	
-
-	
 
 	
 
